@@ -23,14 +23,16 @@ app.get("/users", (request, response) => {
     });
 });
 
-app.post("/users", (request, response) => {
-  const { username, password } = request.body;
+app.post("/register", (request, response) => {
+  const { 
+    username, password, first, last, email, bio  
+  } = request.body;
 
   bcrypt.hash(password, HASH_COST).then((hashedPassword) => {
     database("user")
-      .insert({ username, password_digest: hashedPassword })
-      .returning("*")
-      .then((users) => response.status(200).json({ newUser: users[0] }));
+      .insert({ username, password_digest: hashedPassword, first, last, email, bio})
+      .returning("*").limit(1)
+      .then((user) => response.status(200).json({ user }));
   });
 });
 
@@ -59,5 +61,12 @@ app.post("/login", (request, response) => {
     })
     .catch((err) => response.status(401).json({ error: err.message }));
 });
+
+
+app.get('/followers', (request, response) => {
+  
+})
+
+
 
 app.listen(PORT, console.log(`Listening on ${PORT}...`));
