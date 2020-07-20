@@ -3,7 +3,7 @@ const TABLE_NAME = "user";
 exports.up = function (knex) {
   return knex.schema.createTable(TABLE_NAME, (table) => {
     table.increments("id").primary();
-    table.timestamps()
+    table.timestamps(true, true)
     table.string("username").unique() 
     table.string("password_digest");
     table.string("first", 100);
