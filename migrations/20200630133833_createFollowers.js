@@ -9,6 +9,7 @@ exports.up = function(knex) {
     table.integer("requestee_id").references("id").inTable('user');
     table.integer("requestor_id").references("id").inTable("user");
     table.boolean('accepted').defaultTo(false)
+    table.boolean('pending').defaultTo(true)
   })
 };
 
