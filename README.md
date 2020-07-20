@@ -28,22 +28,40 @@ Listed below is a high-level summary of the various endpoints available via this
 
 ### Users 
 
-**HTTP Method** - `GET` 
-**PATH** - `/users` 
-**Authorization** - no 
-**Description** - requests list registered users, returns array of objects with user data 
-**Body** - n/a 
+**HTTP Method** `GET` 
+**PATH** `/users` 
+**Authorization** N/A  
+**Description** Requests list registered users, returns array of objects with user data 
+**Body** N/A  
 **Request Example** 
 ```sh
 curl --location --request POST 'http://localhost:4000/users' 
 ```
+**Response Example**
+```json
+[
+    {
+        "id": 1,
+        "created_at": "2020-07-20T22:59:47.328Z",
+        "updated_at": "2020-07-20T22:59:47.328Z",
+        "username": "ademple",
+        "password_digest": "$2b$12$3wN/Uwlq9cryI/JGsbmUHORWU6GvN7j5kuwnBmmvWckNa/WVn8k2u",
+        "first": "Alex",
+        "last": "Demple",
+        "email": "alex.demple@gmail.com",
+        "bio": null
+    }
+]
+```
+
+***
 
 ### Register 
 
-**HTTP Method** - `POST` 
-**PATH** - `/register` 
-**Authorization** - no 
-**Description** - requests the registration of a new user, returns the new user's information
+**HTTP Method** `POST` 
+**PATH**  `/register` 
+**Authorization** N/A 
+**Description** Requests the registration of a new user, returns the new user's information
 **Body** 
 * `first` - [string, required] - User's first name 
 * `last` - [string, required] - User's family name 
@@ -56,18 +74,44 @@ curl --location --request POST 'http://localhost:4000/users'
 ```sh
 curl --location --request POST 'http://localhost:4000/register' --header 'Content-Type: application/json' --data-raw '{"first": "Alex", "last": "Demple", "email": "alex.demple@gmail.com", "username": "ademple", "password": "ddddddd" }'
 ```
+**Response Example**
+```json 
+{
+    "user": [
+        {
+            "id": 2,
+            "created_at": "2020-07-20T23:25:28.040Z",
+            "updated_at": "2020-07-20T23:25:28.040Z",
+            "username": "sam.adams",
+            "password_digest": "$2b$12$YbsNUnqrBzIvoth9QmHH7.IwiZmA1vkqig3JS3X3x.ugPK8NfT4RS",
+            "first": "Sam",
+            "last": "Adams",
+            "email": "sam.adams@gmail.com",
+            "bio": null
+        }
+    ]
+}
+```
+
+*** 
 
 ### Login 
 
-**HTTP Method** - `POST` 
-**PATH** - `/login` 
-**Authorization** - no 
-**Description** - verifies provided credentials and (assuming valid credentials) returns a tokenn 
+**HTTP Method** `POST` 
+**PATH** `/login` 
+**Authorization** N/A
+**Description** Verifies provided credentials and (assuming valid credentials) returns a tokenn 
 **Body**
-* `username` (string, required) 
-* `password` (string. required) 
+* `username` - [string, required] - Public screen name for user (must be unique) 
+* `password` - [string, required] - Password for authentication to protected resources 
 
 **Request Example** 
 ```sh
-curl --location --request POST 'http://localhost:4000/register' --header 'Content-Type: application/json' --data-raw '{"first": "Alex", "last": "Demple", "email": "alex.demple@gmail.com", "username": "ademple", "password": "ddddddd" }'
+curl --location --request POST 'http://localhost:4000/login' --header 'Content-Type: application/json' --data-raw '{"username": "ademple", "password": "ddddddd" }'
+```
+**Response Example**
+```json
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMjBUMjM6MjU6MjguMDQwWiIsInVwZGF0ZWRfYXQiOiIyMDIwLTA3LTIwVDIzOjI1OjI4LjA0MFoiLCJ1c2VybmFtZSI6InNhbS5hZGFtcyIsInBhc3N3b3JkX2RpZ2VzdCI6IiQyYiQxMiRZYnNOVW5xckJ6SXZvdGg5UW1ISDcuSXdpWm1BMXZrcWlnM0pTM1gzeC51Z1BLOE5mVDRSUyIsImZpcnN0IjoiU2FtIiwibGFzdCI6IkFkYW1zIiwiZW1haWwiOiJzYW0uYWRhbXNAZ21haWwuY29tIiwiYmlvIjpudWxsLCJpYXQiOjE1OTUyODc2MDd9.SWaoYtniP0g66eEBh99d9S7KjmfD9jI4NU8ZQaHCuUE"
+}
 ```
