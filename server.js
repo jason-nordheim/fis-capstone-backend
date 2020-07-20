@@ -89,6 +89,12 @@ app.get("/myinfo", Authenticate, (request, response) => {
   response.json(request.user)
 })
 
+app.patch("/followers", Authenticate, (request, response) => {
+  const { id } = request.user;
+  const { accept, pending } = request.body 
+  
+});
+
 app.get("/followers", Authenticate,  (request, response) => {
   const { id } = request.user
   response.json({ id })
@@ -105,6 +111,7 @@ app.post("/followers", Authenticate, (request, response) => {
     .catch((error) => response.status(400).json(error.detail))
   }
 })
+
 
 app.get("/events", Authenticate, (request, response) => {
   const { id } = request.user;
