@@ -11,6 +11,7 @@ Listed below is a high-level summary of the various endpoints available via this
 
 ## Overview 
 
+
 | HTTP Method | Path         | Auth | Body  | Response Example  | Description | 
 |:------------|:-------------|:-----|:------|:------------------|:------------| 
 | `get`       | `/users`     | no   | -       | `[{"id": 1,"created_at": "2020-07-20T21:25:17.467Z","updated_at": "2020-07-20T21:25:17.467Z","username": "sadams","password_digest": "$2b$12$06xYs4yFxGJi2EXsMCRsCOmB2B52GHp.KHsO7CGUpMmdOKm30Nw3W","first": "Sam","last": "Adams","email": "sam.adams@gmail.com","bio": "avid beer drinker" },{ "id": 2,"created_at": "2020-07-20T21:58:56.202Z","updated_at": "2020-07-20T21:58:56.202Z","username": "jdoe","password_digest": "$2b$12$oeZUgmWEKH6hKx86Vc/K0OvnPEsgU/525ZMc/Ls.ypd6hs649FHlm","first": "Jane","last": "Doe","email": "jane.doe@gmail.com","bio": "I like long walks through gardens"}]` | returns a list of registered users | 
@@ -18,6 +19,55 @@ Listed below is a high-level summary of the various endpoints available via this
 | `post`      | `/login`     | no   | ` {username, password }` | | returns a hashed token (assuming correct credentials) that can be used to access resources | 
 | `post`      | `/followers` | yes  | `{ friendId }` | | creates a new request follower request | 
 | `get`       | `/followers` | yes  | - | | returns the followers of the authenticated user | 
+| `patch`     | `/followers` | yes | `{ requestId, accept, pending } | - | marks a follower request as accepted/rejected and changes status of pending to false |  
 | `get`       | `/myinfo`    | yes  | - | | returns a JSON representation of the current user based on their token | 
 | `get`       | `/events`    | yes  | - | | returns a JSON representation of the events create by the user identified in the authorization portion of the request | 
 | `post`      | `/events`   | yes  | `{ creator, start, end, title, description }` | | creates a new event for the user identified in the authorization portion of the request | 
+
+
+
+### Users 
+
+**HTTP Method** - `GET` 
+**PATH** - `/users` 
+**Authorization** - no 
+**Description** - requests list registered users, returns array of objects with user data 
+**Body** - n/a 
+**Request Example** 
+```sh
+curl --location --request POST 'http://localhost:4000/users' 
+```
+
+### Register 
+
+**HTTP Method** - `POST` 
+**PATH** - `/register` 
+**Authorization** - no 
+**Description** - requests the registration of a new user, returns the new user's information
+**Body** 
+* `first` - [string, required] - User's first name 
+* `last` - [string, required] - User's family name 
+* `username` - [string, required] - Public screen name for user (must be unique) 
+* `password` - [string, required] - Password for authentication to protected resources 
+* `email` - [string, required] - Contact email address for user (must be unique) 
+* `bio` - [string, optional] - Brief auto-biography of the user
+
+**Request Example** 
+```sh
+curl --location --request POST 'http://localhost:4000/register' --header 'Content-Type: application/json' --data-raw '{"first": "Alex", "last": "Demple", "email": "alex.demple@gmail.com", "username": "ademple", "password": "ddddddd" }'
+```
+
+### Login 
+
+**HTTP Method** - `POST` 
+**PATH** - `/login` 
+**Authorization** - no 
+**Description** - verifies provided credentials and (assuming valid credentials) returns a tokenn 
+**Body**
+* `username` (string, required) 
+* `password` (string. required) 
+
+**Request Example** 
+```sh
+curl --location --request POST 'http://localhost:4000/register' --header 'Content-Type: application/json' --data-raw '{"first": "Alex", "last": "Demple", "email": "alex.demple@gmail.com", "username": "ademple", "password": "ddddddd" }'
+```
