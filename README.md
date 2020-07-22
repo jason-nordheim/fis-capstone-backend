@@ -26,7 +26,7 @@ Listed below is a high-level summary of the various endpoints available via this
 
 
 
-### Users 
+### Users
 
 **HTTP Method** `GET` 
 **PATH** `/users` 
@@ -53,7 +53,6 @@ curl --location --request POST 'http://localhost:4000/users'
     }
 ]
 ```
-
 ***
 
 ### Register 
@@ -113,5 +112,34 @@ curl --location --request POST 'http://localhost:4000/login' --header 'Content-T
 ```json
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMjBUMjM6MjU6MjguMDQwWiIsInVwZGF0ZWRfYXQiOiIyMDIwLTA3LTIwVDIzOjI1OjI4LjA0MFoiLCJ1c2VybmFtZSI6InNhbS5hZGFtcyIsInBhc3N3b3JkX2RpZ2VzdCI6IiQyYiQxMiRZYnNOVW5xckJ6SXZvdGg5UW1ISDcuSXdpWm1BMXZrcWlnM0pTM1gzeC51Z1BLOE5mVDRSUyIsImZpcnN0IjoiU2FtIiwibGFzdCI6IkFkYW1zIiwiZW1haWwiOiJzYW0uYWRhbXNAZ21haWwuY29tIiwiYmlvIjpudWxsLCJpYXQiOjE1OTUyODc2MDd9.SWaoYtniP0g66eEBh99d9S7KjmfD9jI4NU8ZQaHCuUE"
+}
+```
+
+
+### MyInfo 
+
+**HTTP Method** `GET` 
+**PATH** `/myinfo` 
+**Authorization** yes (token)
+**Description** returns end-user information based on provided token  
+**Body**
+N/A
+**Request Example** 
+```sh
+curl --location --request GET 'http://localhost:4000/myInfo' --header 'Authorization: Bearer <<INSERT TOKEN>>4' --header 'Content-Type: application/json' 
+```
+**Response Example**
+```json
+{
+    "id": 6,
+    "created_at": "2020-07-20T22:46:44.047Z",
+    "updated_at": "2020-07-20T22:46:44.047Z",
+    "username": "exampleUsername",
+    "password_digest": "$2b$12$y5GsYuXNO.dZAWlRD.H9je/jKMGKLnoZX5/sHPK3wAooKI0Ngr2j2",
+    "first": "Ex",
+    "last": "Ample",
+    "email": "ex.ample@gmail.com",
+    "bio": "This is an example bio",
+    "iat": 1595285210
 }
 ```
