@@ -1,11 +1,10 @@
 # User Stories 
 ## Create an event 
 Allows an user to create an event 
-### API 
 * **Actor**: registered-user 
 * **Headers**: user-token (JWT) 
 * **Request Type**:  `POST`
-* **Body** (JSON)
+* **Request Body** (JSON)
 - name: the verbose name of the event 
 - description: a breif summary of what the event is about
 - start: the start of the availability window of event. 
@@ -32,12 +31,15 @@ Success - 200
   "updated_at": "2020-07-20T22:46:44.047Z" 
 }
 ```
+***
+
 ## Create an account (Register)
 * **Actor**: new-user 
 * **Headers**: 
 * **Request Type**: 
 * **Request Body**: 
 * **Response**: 
+***
 
 ## Login to an account (Login) 
 * **Actor**: registered-user 
@@ -45,20 +47,40 @@ Success - 200
 * **Request Type**: 
 * **Request Body**: 
 * **Response**: 
+***
 
 ## Search destinations 
 Allows end-users to search for a venue to hike, bike, or hang out in nature. 
-### API 
 * **Actor**: registered-user 
 * **Headers**: user-token (JWT) 
 * **Request Type**:  `POST`
-* **Body** (JSON)
+* **Request Body** (JSON)
 Latitude - Degrees North (N) or South (S) of the equator 
-
 ```json 
 { 
   "latitude": 
 }
 ```
+*** 
 ## Vote for an excursion (destination) 
+* **Actor**: 
+* **Headers**: 
+* **Request Type**:  
+* **Request Body** (JSON)
+```json 
+{ 
+  "todo": 
+}
+```
+*** 
 ## Mark time available (event attendee)
+* **Actor**: 
+* **Headers**: 
+* **Request Type**:  
+* **Request Body** (JSON)
+```json 
+{ 
+  "todo": 
+}
+```
+***
