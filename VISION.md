@@ -63,3 +63,18 @@ At creation, the event organizer will enter a date range and invite anyone they 
 Invitees will be asked to respond to the invitation by removing from the event "window" (timeframe) times that work for them. Invitees availability will default to unavailable during the entire window by default - indicating that the "invitee" is unavailable during the entire window of availability. Recall, "invitees" will have a set timeframe during which they can respond, after which their availability will be "locked" (unable to be changed). It is also during the RSVP period, that "invitees" will be able to vote on or suggests destinations for the event. 
 
 Once all the invited h1k3rs have responded with their availability (or lack there of), the organizer can get a good idea of what time works for the most people. Since this information is **only** visible to the "event organizer" there should be no bias in responses from the "invitees" (e.g. _"I'll just put the same availability as Sarah"_). 
+
+
+# Features 
+
+## Social Features 
+
+1. A `user` can `buddy-request`'s to other `user`s 
+2. A `user` can `accept` or `reject` another `user`s `buddy-request` 
+3. A `user` can `save` an `attraction`
+4. A `user` can `share` an `attraction` 
+5. A `user` can `create` an `event` 
+6. A `user` can `invite` another `user` to their `event` 
+7. A `user` can `propose` an `attraction` for an `event` 
+8. A `user` can `vote` for an `attraction` for an `event`
+9. A `user` can `give-availability` for an `event` 
