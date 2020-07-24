@@ -1,7 +1,9 @@
 # User Stories 
 ## Create an event 
 Allows an user to create an event 
-* **Actor**: registered-user 
+* **Actor**: registered-user
+* **Feature**: #5 
+A `user` can `create` an `event` 
 * **Headers**: user-token (JWT) 
 * **Request Type**:  `POST`
 * **Request Body** (JSON)
@@ -11,7 +13,7 @@ Allows an user to create an event
 - end: the end of the availability window of an event. 
 ```json 
 { 
-  "name": "Name of Event", 
+  "name": "Hike to Mohawk Lake", 
   "description": "We will be meeting in the small pavilion adjacent to the parking lot", 
   "start": "2020-07-20T22:46:44.047Z", 
   "end": "2020-07-20T22:46:44.047Z"
@@ -35,18 +37,50 @@ Success - 200
 
 ## Create an account (Register)
 * **Actor**: new-user 
-* **Headers**: 
-* **Request Type**: 
-* **Request Body**: 
-* **Response**: 
+* **Headers**: NA
+* **Request Type**: `POST` 
+* **Request Body**: (JSON)
+first - first name of the end-user 
+last - last-name (family name) of the end-user 
+username - unique login name for the user 
+email - contact email addresss 
+bio - short profile introduction 
+password - login verification 
+```json
+{
+  "first": "Jeffrey", 
+  "last": "Rogers", 
+  "username": "super-ausie", 
+  "email": "jeffrey@rogers.com", 
+  "bio": "Hey I am Jeffrey (or Jeff) and I'm big into mountain biking and camping", 
+  "password": "sUp3rS3cr3tP@ssw0rd", 
+}
+```
+* **Response**: (JSON)
+Success - 200 
+```json
+{
+  "id": 234, 
+  "first": "Jeffrey", 
+  "last": "Rogers", 
+  "username": "super-ausie", 
+  "email": "jeffrey@rogers.com", 
+  "bio": "Hey I am Jeffrey (or Jeff) and I'm big into mountain biking and camping", 
+  "password_digest": "jKMGKLnoZX5/sHPK3wAooKI0Ngr2j2", 
+}
+```
 ***
 
 ## Login to an account (Login) 
 * **Actor**: registered-user 
-* **Headers**: 
-* **Request Type**: 
-* **Request Body**: 
-* **Response**: 
+* **Headers**: NA
+* **Request Type**: `POST` 
+* **Request Body**: (JSON)
+```json
+```
+* **Response**: (JSON)
+```json 
+``` 
 ***
 
 ## Search destinations 
@@ -62,7 +96,7 @@ Latitude - Degrees North (N) or South (S) of the equator
 }
 ```
 *** 
-## Vote for an excursion (destination) 
+## Vote for an Attraction (destination) 
 * **Actor**: 
 * **Headers**: 
 * **Request Type**:  
